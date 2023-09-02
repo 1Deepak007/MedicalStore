@@ -1,0 +1,122 @@
+<!-- NAVBAR -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="assets/css/style.css">   
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- removed -> rel="stylesheet"  cuz showing err in console-->
+    <title>Navbar</title>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+      &nbsp;&nbsp;
+
+      <h5 class="text-info my-1" style="font-family: 'Gill Sans MT';">Follow Us : </h5>
+      &nbsp;&nbsp;
+
+      <a href="https://www.facebook.com/profile">
+        <i class="fa fa-facebook" style="font-size:25px;color:blue;"></i>
+      </a>
+
+      &nbsp;&nbsp;
+      
+      <a href="https://www.instagram.com/deepakgautam595/">
+        <i class="fa fa-instagram" style="font-size:25px;color:red;"></i>
+      </a>
+
+      <a class="navbar-brand mx-4" href="#" style="font-family: 'Gill Sans MT'">JAANVI MEDICAL STORE</a>
+
+      <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="search-bar">
+          <form action="{% url 'searchproduct' %}" method="POST">
+            {% csrf_token %}
+            <div class="input-group">
+              <input type="search" required name="productsearch" id="searchproducts" class="form-control" placeholder="Search product">
+              <button type="submit" class="input-group-text"><i class="fa fa-search"></i></button>
+            </div>
+          </form>
+        </div>
+        
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %} " aria-current="page" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if request.resolver_match.url_name == 'collections' %}active{% endif %}" href="{% url 'collections' %}">Collections</a>
+            </li>
+            
+            {% if request.user.is_authenticated %}
+              
+            <li class="nav-item"> <a class="nav-link" href="{% url 'myorders' %}">My Orders</a></li>
+            {% comment %} <li class="nav-item"> <a class="nav-link" href="{% url 'logout' %}">My Orders</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{% url 'logout' %}">My Orders</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{% url 'logout' %}">My Orders</a></li> {% endcomment %}
+              <li class="nav-item">
+                <a class="nav-link {% if request.resolver_match.url_name == 'cart' %}active{% endif %}" aria-current="page" href="{% url 'cart' %}">Cart</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% if request.resolver_match.url_name == 'wishlist' %}active{% endif %}" aria-current="page" href="{% url 'wishlist' %}">Wishlist</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+              </li>
+
+
+            {% else %}
+
+
+              <li class="nav-item">
+              <a class="nav-link" href="{% url 'loginpage' %}">LogIn</a>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link" href="{% url 'register' %}">Register</a>
+              </li>
+            {% endif %}
+
+
+            <li class="nav-item">
+              <a class="nav-link" href="/blog">Blog</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/irisapp">Analyze</a>
+            </li>
+
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    
+
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+  </body>
+
+</html>

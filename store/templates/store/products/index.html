@@ -1,0 +1,44 @@
+{% extends 'store/layouts/main.html' %}
+
+{% block content %}
+
+<!-- <div class="py-3 bg-primary">
+    <div class="container">
+        <a class="text-white" href="{% url 'home' %}">Home /</a>
+        <a class="text-white" href="{% url 'collections' %}">Collections /</a>
+        <a class="text-white" href="{% url 'collectionsview' category.slug %}">{{category.name}}</a>
+    </div>
+</div> -->
+
+<div class="container my-3">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="container shadow"  style="background: linear-gradient(to left, #2980b9, #6dd5fa, #ffffff);">{{category.name}}</h1>
+            <div class="row">
+                {% for item in products %}
+                <div class="col-md-3 mt-2">
+                    <div class="card h-100">
+                        <a href= "{% url 'productview' item.category.slug item.slug %}">   {% comment %} "{% url 'collections' item.slug %}" {% endcomment %}    
+                            <div class="card-body">
+                                
+                                <div class="category-image my-2">
+                                    <img src="{{item.product_image.url}}" alt="Product image" class="w-100"/>
+                                </div>
+                                <div class="align-text-bottom">
+                                    <h4 class="text-center">{{item.name}}</h4>
+                                    <span class="float-start"><s>&#8377;{{item.original_price | stringformat:'d'}}</s></span>
+                                    <span class="float-end"><strong>&#8377;{{item.selling_price | stringformat:'d'}}</strong></span>
+                                </div>
+
+                            </div>  
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

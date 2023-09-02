@@ -1,0 +1,62 @@
+{% extends 'store/layouts/main.html' %}
+
+
+{% block content %}
+
+{% comment %} 
+<div class="py-3 bg-primary" style="background: rgb(63,94,251);background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(215,70,252,1) 100%);">
+    <div class="container">
+        <a class="text-white" href="{% url 'home' %}">Home / </a>
+        <a class="text-white" href="{% url 'collections' %}">Collections</a>
+    </div>
+</div> 
+{% endcomment %}
+
+<div class="container my-5 shadow" style="background: linear-gradient(to left, #2980b9, #6dd5fa, #ffffff);">
+    <div class="row">
+        <div class="col-md-12 mt-3">
+            <h1 class="shadow">Medical Collections</h1>
+            <hr>
+            <div class="row">
+                {% for item in category %}
+                <div class="col-md-3">
+                    <div class="card my-2 shadow">
+                        <a href="{% url 'collectionsview' item.slug %}">
+                            <div class="card-body">
+                                <div class="category-image">
+                                    <img src="{{item.image.url}}" alt="Category image" class="w-100 zoom" />
+                                </div>
+                                <h4 class="text-center">{{item.name}}</h4>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% comment %} <div class="container"> {% endcomment %}
+    {% comment %} <h1>Collections</h1> {% endcomment %}
+    {% comment %}
+    <hr> {% endcomment %}
+    {% comment %} <div class="card-group"> {% endcomment %}
+        {% comment %} {%for item in category%} {% endcomment %}
+        {% comment %} <div class="card m-2"> {% endcomment %}
+            {% comment %} <img src="{{ item.image.url }}" class="card-img-top w-120 h-100 p-5" alt="..."> {% endcomment
+            %}
+            {% comment %} <div class="card-body"> {% endcomment %}
+                {% comment %} <h5 class="card-title text-center">{{item.name}}</h5> {% endcomment %}
+                {% comment %} arleady commented <p class="card-text">{{item.metadescription}}</p> {% endcomment %}
+                {% comment %} </div> {% endcomment %}
+            {% comment %} </div> {% endcomment %}
+        {% comment %} {%endfor%} {% endcomment %}
+        {% comment %} </div> {% endcomment %}
+    {% comment %}
+</div> {% endcomment %}
+
+
+{% endblock content %}

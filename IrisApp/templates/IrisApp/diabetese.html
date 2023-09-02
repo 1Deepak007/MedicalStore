@@ -1,0 +1,34 @@
+{% extends 'IrisApp/base.html' %}
+
+
+{% block body %}
+
+  <div class="container py-5">
+    <form method="post" action="analyze" class="container-lg">
+      {% csrf_token %}
+      <h1 class="text-center">Analyze your Diabetese</h1>
+      <div>
+        <label for="sepal_length" class="form-label">Symptome 1</label>
+        <input name="sepal_length" id="sepal_length" class="form-control" type="text" placeholder="Default input"
+          aria-label="default input example">
+
+        <label for="sepal_width" class="form-label pt-4">Symptome 1</label>
+        <input name="sepal_width" id="sepal_width" class="form-control" type="text" placeholder="Default input"
+          aria-label="default input example">
+
+        <label for="petal_length" class="form-label pt-4">Symptome 1</label>
+        <input name="petal_length" id="petal_length" class="form-control" type="text" placeholder="Default input"
+          aria-label="default input example">
+
+        <label for="petal_width" class="form-label pt-4">Symptome 1</label>
+        <input name="petal_width" id="petal_width" class="form-control" type="text" placeholder="Default input"
+          aria-label="default input example">
+      </div>
+      <div class="text-center">
+      </div>
+      <button type="submit" value="submit" class="btn btn-success my-3">Analyze</button>
+    </form>
+  </div>
+
+
+{% endblock %}

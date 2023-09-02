@@ -1,0 +1,153 @@
+{% extends 'IrisApp/base.html' %}
+
+
+{% block body %}
+
+<!--
+
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Select Disease To Analyze  </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="">Heart Disease</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}">Maleria</a>
+          {% comment %} <a class="nav-link" href="{% url '' %}" >Maleria</a> {% endcomment %}
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  href="{% url 'home' %}">Diabetese</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+-->
+
+
+<div class="container py-5">
+  {% comment %} <form method="post" action="analyze" class="container-lg"> {% endcomment %}
+    <form method="POST" action="heartdiseaseanalyze" class="container-lg">
+      {% csrf_token %}
+      <h1 class="text-center">Analyze your Heart Disease</h1>
+      {% comment %} sample input : input_data = (62,0,0,140,268,0,0,160,0,3.6,0,2,2){% endcomment %}
+      <div class="row">
+        <div class="col">
+          <label for="age" class="form-label">Age</label>
+          <input name="age" id="age" default='63' class="form-control w-25 mx-5" style="display:inline"
+            placeholder="Enter Value" aria-label="default input example" Required>
+
+
+          <label for="sex" class="form-label pt-4">Sex (m-1,f-0)</label>
+          <input name="sex" id="sex" default='3' class="form-control w-25 ml-2" style="display:inline"
+            placeholder="Enter Value" aria-label="default input example" Required>
+
+          <label for="cp" class="form-label pt-4" style="padding-left:40px">CP</label>
+          <input name="cp" id="cp" default='1' class="form-control w-25 " style="display:inline"
+            placeholder="Enter Value" aria-label="default input example" Required><br>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label for="trestbps" class="form-label pt-4" style="padding-right:18px">Trestbps</label>
+          <input name="trestbps" id="trestbps" default='145' class="form-control w-25" style="display:inline"
+            placeholder="Enter Value" aria-label="default input example" Required>  
+
+          <label for="chol" class="form-label pt-4" style="padding-left:45px">Chol</label>
+          <input name="chol" id="chol" default='133' class="form-control w-25" style="display:inline; margin-left:60px;"
+            placeholder="Enter Value" aria-label="default input example" Required>
+
+          <label for="fbs" class="form-label pt-4"  style="padding-left:40px">Fbs</label>
+          <input name="fbs" id="fbs" default='1' class="form-control w-25" style="display:inline"
+            placeholder="Enter Value" aria-label="default input example" Required><br>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label for="restecg" class="form-label pt-4">Restecg</label>
+          <input name="restecg" id="restecg" default='150' class="form-control w-25" style="display:inline; margin-left:20px;"
+            placeholder="Enter Value" aria-label="default input example" Required>
+
+          <label for="thalach" class="form-label pt-4" style=" margin-left:48px;">Thalach</label>
+          <input name="thalach" id="thalach" default='0'  class="form-control w-25" style="display:inline; margin-left:35px;"
+            placeholder="Enter Value" aria-label="default input example" Required>
+
+          <label for="exang" class="form-label pt-4" style=" margin-left:22px;">Exang</label>
+          <input name="exang" id="exang" default='2.3' class="form-control w-25" style="display:inline"
+            placeholder="Enter Value" aria-label="default input example" Required><br>
+        </div>
+      </div>
+      <label for="oldpeak" class="form-label pt-4" style=" margin-right:15px;">Oldpeak</label>
+      <input name="oldpeak" id="oldpeak" default='0' class="form-control w-25" style="display:inline"
+        placeholder="Enter Value" aria-label="default input example" Required>
+
+      <label for="slope" class="form-label pt-4" style="margin-left:45px; margin-right:50px;">Slope</label>
+      <input name="slope" id="slope" default='0' class="form-control w-25" style="display:inline"
+        placeholder="Enter Value" aria-label="default input example" Required>
+
+      <label for="ca" class="form-label pt-4" style="margin-left:45px;">Ca</label>
+      <input name="ca" id="ca" default='3' class="form-control w-25" style="display:inline" placeholder="Enter Value"
+        aria-label="default input example" Required><br>
+
+      <label for="thal" class="form-label pt-4">Thal</label>
+      <input name="thal" id="thal" default='3' class="form-control w-25" style="display:inline; margin-left:40px;"
+        placeholder="Enter Value" aria-label="default input example" Required>
+
+      {% comment %}
+      <label for="target" class="form-label pt-4">Target</label>
+      <input name="target" id="target" class="form-control w-25" style="display:inline" placeholder="Default input"
+        aria-label="default input example"> {% endcomment %}
+
+
+      <div class="text-center">
+      </div>
+      <button type="submit" value="submit" class="btn btn-success my-3">Analyze</button>
+    </form>
+    <hr>
+</div>
+
+
+
+
+
+
+
+{% comment %} DIABETSE {% endcomment %}
+<!--
+<div class="container py-5">
+  <form method="POST" action="diabeteseanalyze" class="container-lg">
+    {% csrf_token %}
+    <h1 class="text-center">Analyze your Diabetese</h1>
+    <div>
+      <label for="glucose" class="form-label">Glucose </label>
+      <input name="glucose" id="glucose" class="form-control" type="text" placeholder="Enter Value"
+        aria-label="default input example">
+
+      <label for="insuline" class="form-label pt-4">Insuline </label>
+      <input name="insuline" id="insuline" class="form-control" type="text" placeholder="Enter Value"
+        aria-label="default input example">
+
+      <label for="bmi" class="form-label pt-4">BMI </label>
+      <input name="bmi" id="bmi" class="form-control" type="text" placeholder="Enter Value"
+        aria-label="default input example">
+
+      <label for="age" class="form-label pt-4">Age </label>
+      <input name="age" id="age" class="form-control" type="text" placeholder="Enter Value"
+        aria-label="default input example">
+    </div>
+    <div class="text-center">
+    </div>
+    <button type="submit" value="submit" class="btn btn-success my-3">Analyze</button>
+  </form>
+</div>
+-->
+
+{% endblock body %}

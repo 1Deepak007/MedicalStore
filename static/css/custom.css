@@ -1,0 +1,13 @@
+.checkoutform label{
+    font-size: 16px !important;
+    font-weight: 600;
+}
+
+.checkoutform input{
+    font-size: 16px !important;
+}
+
+.search-bar{
+    width: 40% !important;
+    margin-left: 50px;
+}

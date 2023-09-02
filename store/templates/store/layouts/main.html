@@ -1,0 +1,189 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="referrer" content="no-referref-when-downgrade">
+
+        <title>
+            {% block title %}
+
+            {% endblock title %}
+        </title>
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+
+        {% comment %} ALERTIFY JS {% endcomment %}
+        <!-- CSS -->
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+        <!-- Default theme -->
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+        {% comment %} Jquery {% endcomment %}
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+        <script>
+            var availableTags = [];
+
+            $("#searchproducts").autocomplete({
+                source: availableTags
+            });
+        </script>
+
+
+        {% comment %} custom css (static/css) {% endcomment %}
+        <link rel="stylesheet" href="{% static 'css/custom.css' %}" />
+
+        {% comment %} Below links for owl carousel {% endcomment %}
+        <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}" />
+        
+
+        <style>
+            * {
+                font-family: 'Roboto', sans-serif;
+            }
+
+            a {
+                text-decoration: none;
+                color: #000;
+            }
+
+            .product-viewtag {
+                background-color: red;
+                color: #fff;
+                font-size: 11px;
+                line-height: 1;
+                position: absolute;
+                text-align: center;
+                text-transform: uppercase;
+                top: 22px;
+                margin-left: 17.5rem;
+                padding: 7px 10px;
+                font-weight: 600;
+                min-width: 45px;
+            }
+
+            .active {
+                font-weight: 800;
+            }
+
+
+
+
+            .zoom {
+                padding: 0px;
+                background-color: green;
+                transition: transform .2s;
+                /* Animation */
+                width: 200px;
+                height: 200px;
+                margin: 0 auto;
+            }
+
+            .zoom:hover {
+                transform: scale(0.5);
+                /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+            }
+        </style>
+    </head>
+
+    <body>
+
+        {% include 'store/inc/navbar.html' %}
+
+
+        {% block content %}
+
+        {% endblock content %}
+
+        {% comment %} Jquery {% endcomment %}
+        <script src="{% static '/js/jquery-3.6.3.min.js' %}"></script>
+
+        {% comment %} Custom Js {% endcomment %}
+        <script src="{% static '/js/custom.js' %}"></script>
+        <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+
+        {% comment %} Bootstrap {% endcomment %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+
+        {% comment %} Jquery {% endcomment %}
+        {% comment %}
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script> {% endcomment %}
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+        
+        <script>
+            var availableTags = [];
+
+            $.ajax
+            ({
+                method: "GET",
+                url: "/product-list",
+                success: function (response){
+                    console.log(response);
+                    startAutocomplete(response);
+                }
+            });
+
+
+
+            function startAutocomplete(availableTags){
+                $("#searchproducts").autocomplete({
+                    source: availableTags
+                });
+            }
+        </script>
+
+
+        <!--Start of Tawk.to Script-->
+                                        <!-- https://www.tawk.to/ -->
+        <script type="text/javascript">
+            var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+            (function () {
+                var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+                s1.async = true;
+                s1.src = 'https://embed.tawk.to/64130a5031ebfa0fe7f2f762/1grl60jkj';
+                s1.charset = 'UTF-8';
+                s1.setAttribute('crossorigin', '*');
+                s0.parentNode.insertBefore(s1, s0);
+            })();
+        </script>
+        <!--End of Tawk.to Script-->
+
+
+        <!-- Alertify JavaScript -->
+        <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+        <script>
+            alertify.set('notifier', 'position', 'top-right');
+
+            {% for msg in messages %}
+            alertify.success('{{msg}}');
+            {% endfor %}
+        </script>
+
+        {% block script %}
+
+        {% endblock script %}
+
+        {% comment %} Jquery {% endcomment %}
+        {% comment %} RAZORPAY CHECKOUT {% endcomment %}
+        <script src="{% static '/js/checkout.js' %}"></script>
+    </body>
+
+</html>
